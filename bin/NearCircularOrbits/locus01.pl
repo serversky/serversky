@@ -1,8 +1,10 @@
-#!/usr/local/bin/perl
+#!/usr/bin/env perl
 # draw orbit with semimajor axis 1,  radius eccentricity e
 # then rotate by mean anomaly
 
 use Math::Trig;
+use strict;
+use warnings;
 
 my   $pi           = 4.0*atan(1.0)      ;
 my   $radian       = $pi / 180.0        ;
@@ -19,8 +21,8 @@ my   $da = 0.5 ;
 # compute from apogee to apogee
 for( my $an  = -180.0 ; $an < 180.00001 ; $an += $da ) {
    my $theta = $radian * $an ;
-   $s = sin( $theta );
-   $c = cos( $theta );
+   my $s = sin( $theta );
+   my $c = cos( $theta );
    foreach my $e ( @ea ) {
       my $rr = (1.0-$e*$e) / (1.0 + $e*$c );
       my $xr = -$rr * $s ;
